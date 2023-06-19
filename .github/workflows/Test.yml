@@ -1,0 +1,41 @@
+name: Test
+
+on:
+ push:
+  paths:
+  - '.github/workflows/Test.yml'
+ pull_request:
+  paths:
+ workflow_dispatch:
+
+defaults:
+ run:
+  shell: bash
+
+env:
+ GHA: 'true'
+
+jobs:
+
+ Test1:
+  if:      github.actor != 'antalaskaya'
+  runs-on: windows-2019
+  steps:
+
+  - name: Clone
+    uses: actions/checkout@v3
+
+  - name: Clone sslc
+    uses: actions/checkout@v3
+    with:
+     path:       sslc
+     repository: sfall-team/sslc
+
+  - name: Build Fallout Compiler
+    uses: ./.github/actions/msbuild
+    with:
+     name:          "sslc"
+     file:          "sslc/sslc.sln"
+     configuration: Release
+     arguments:     -p:Platform=Win32 -p:PlatformToolset=v140_xp
+
