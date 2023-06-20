@@ -8,8 +8,6 @@ inputs:
   required: true
  arguments:
   required: false
- name:
-  required: true
 
 branding:
  icon:  'tool'
@@ -19,15 +17,8 @@ runs:
  using: 'composite'
  steps:
 
- - name:  Build
-   run:   |
+ - run:   |
           :
-          echo "::group::MSBuild"
           GHA_MSBUILD_EXE="$("/c/Program Files (x86)/Microsoft Visual Studio/Installer/vswhere.exe" -latest -requires Microsoft.Component.MSBuild -find MSBuild/**/Bin/MSBuild.exe)"
-          echo "$GHA_MSBUILD_EXE"
-          echo "::endgroup::"
-
-          echo "::group::${{ inputs.name }}"
           "$GHA_MSBUILD_EXE" "${{ inputs.file }}" -p:Configuration=${{ inputs.configuration }} ${{ inputs.arguments }}
-          echo "::endgroup::"
    shell: bash

@@ -34,7 +34,6 @@ jobs:
   - name: Build Fallout Compiler
     uses: ./.github/actions/msbuild
     with:
-     name:          "sslc"
      file:          "sslc/sslc.sln"
      configuration: Release
      arguments:     -p:Platform=Win32 -p:PlatformToolset=v140_xp -p:PostBuildEventUseInBuild=false
