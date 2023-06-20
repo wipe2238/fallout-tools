@@ -37,4 +37,4 @@ jobs:
      name:          "sslc"
      file:          "sslc/sslc.sln"
      configuration: Release
-     arguments:     -p:Platform=Win32 -p:PlatformToolset=v140_xp -p:PostBuildEvent=@rem
+     arguments:     -p:Platform=Win32 -p:PlatformToolset=v140_xp -p:PostBuildEvent=false
