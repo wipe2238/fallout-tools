@@ -2,6 +2,9 @@ name:        "MSBuild"
 description: "MSBuild"
 
 inputs:
+ vswhere:
+  required: false
+  default:  "-latest -requires Microsoft.Component.MSBuild -find MSBuild/**/Bin/MSBuild.exe"
  file:
   required: true
  configuration:
@@ -17,5 +20,6 @@ runs:
  using: 'composite'
  steps:
 
- - run:   $(vswhere -latest -requires Microsoft.Component.MSBuild -find MSBuild/**/Bin/MSBuild.exe)" "${{ inputs.file }} -p:Configuration=${{ inputs.configuration }} ${{ inputs.arguments }}
+ - run:   |
+          "$(vswhere ${{ inputs.vswhere }})" "${{ inputs.file }} -p:Configuration=${{ inputs.configuration }} ${{ inputs.arguments }}
    shell: bash
