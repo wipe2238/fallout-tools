@@ -17,5 +17,5 @@ runs:
  using: 'composite'
  steps:
 
- - run:   "$(vswhere -latest -requires Microsoft.Component.MSBuild -find MSBuild/**/Bin/MSBuild.exe)" "${{ inputs.file }}" -p:Configuration=${{ inputs.configuration }} ${{ inputs.arguments }}
+ - run:   $(vswhere -latest -requires Microsoft.Component.MSBuild -find MSBuild/**/Bin/MSBuild.exe)" "${{ inputs.file }} -p:Configuration=${{ inputs.configuration }} ${{ inputs.arguments }}
    shell: bash
