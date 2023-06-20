@@ -21,5 +21,5 @@ runs:
  steps:
 
  - run:   |
-          "$(vswhere ${{ inputs.vswhere }})" "${{ inputs.file }} -p:Configuration=${{ inputs.configuration }} ${{ inputs.arguments }}
+          "$(vswhere ${{ inputs.vswhere }})" "${{ inputs.file }}" -p:Configuration=${{ inputs.configuration }} ${{ inputs.arguments }}
    shell: bash
